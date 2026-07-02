@@ -1,17 +1,44 @@
 package ma.enset;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+import ma.enset.ex1.EntierNaturel;
+import ma.enset.ex1.NombreNegatifException;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        try {
+            EntierNaturel e1 = new EntierNaturel(5);
+            System.out.println("e1 créé : " + e1);
+
+            e1.decrementer();
+            System.out.println("Après décrémentation : " + e1);
+
+            e1.setVal(10);
+            System.out.println("Après setVal(10) : " + e1);
+
+            e1.setVal(-3);
+
+        } catch (NombreNegatifException ex) {
+            System.out.println("Erreur : " + ex.getMessage());
+            System.out.println("Valeur erronée capturée : " + ex.getValeurErronee());
+        }
+
+        try {
+            EntierNaturel e2 = new EntierNaturel(1);
+            e2.decrementer();
+            System.out.println("e2 après 1ère décrémentation : " + e2);
+            e2.decrementer();
+        } catch (NombreNegatifException ex) {
+            System.out.println("Erreur : " + ex.getMessage());
+            System.out.println("Valeur erronée capturée : " + ex.getValeurErronee());
+        }
+
+        try {
+            EntierNaturel e3 = new EntierNaturel(-7);
+        } catch (NombreNegatifException ex) {
+            System.out.println("Erreur : " + ex.getMessage());
+            System.out.println("Valeur erronée capturée : " + ex.getValeurErronee());
         }
     }
 }
